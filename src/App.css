@@ -1,0 +1,70 @@
+.App {
+  text-align: center;
+}
+.parent{
+  /* width: 150em; */
+  /* display: flex; */
+}
+.questions {
+  margin: 0 auto;
+  border: 2px solid black;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+.Button{
+  border: 1px solid black;
+  /* padding: 10px; */
+  margin: 0 auto;
+  /* width: 60%; */
+ /* flex-direction: column; */
+  /* justify-content: center; */
+  margin-top: 10px;
+}
+/* .answers {
+  margin: 0 auto;
+  border: 2px solid black;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+} */
+
+.users {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.user1 {
+  align-items: left;
+  color: blue;
+}
+
+.user2 {
+  align-items: right;
+  color: red;
+}
+
+.circles {
+  width: 25px;
+  height: 25px;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.row1 {
+  display: flex;
+  flex-direction: row;
+}
+
+.row2 {
+  display: flex;
+  flex-direction: row;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+}
