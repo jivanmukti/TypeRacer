@@ -1,0 +1,25 @@
+<html>
+  <head>
+<script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io('http://localhost:3000',{origins:"*"});
+      socket.on('join',(data)=>{console.log(data)})
+      let func = function(){
+      socket.emit('msg','heeloo scott')
+      console.log('access')
+      }
+      let funcy = function(e){
+      console.log('fire')
+      socket.emit('input', e.target.value)
+      }
+
+    </script>
+  </head>
+  
+  <body>
+    HELLO WORLD
+    <button onclick="func()">Chris</button>
+      <input onchange="funcy(e)">
+    </body>
+</html>
+ 
