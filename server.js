@@ -1,47 +1,34 @@
 const express = require('express');
-const socket = require('socket.io');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
+const http = require('http').Server(app);
+var io = require('socket.io')(http, { origins: 'localhost:3000'});
 
-const dataController = require('./dataController');
 
-//question model schema
-require('./model/questionModel');
+let room = 0;
 
-// Send root react page
-
-//mlab server
-mongoose
-  .connect('mongodb://simon:1072322sp@ds123718.mlab.com:23718/feedme-dev')
-  .then(() => console.log('connected to mLab'));
-mongoose.connection.once('open', () => {
-  console.log('Connected to Database');
-});
-
+app.use(express.static('public'));
 app.use(bodyParser.json());
 
-// app.get('/sample', (req, res)[
 
-// ])
+io.on('connect', function(socket){
+  let roomNum = Math.floor(room++ / 3)
+  socket.join(`${roomNum}`);
+  socket.emit('join',`You just joined ${roomNum}`);
+  socket.on('msg',function(msg){
+    console.log(msg)
+  })
 
-//routes
-require('./routes/sampleRoute')(app);
-
-app.get('/', (req, res) => {
-  res.sendFile('/Users/Skyler/Desktop/CodeSmith/scratch-project/public/index.html');
-  // res.send(res.body);
 });
 
-app.get('/question', dataController.getData);
-
-const server = app.listen(3000, () => {
-  console.log('listening on port 3000');
+http.listen(3000, function(){
+  console.log('listening on 3000');
 });
-app.use(express.static('public'));
 
-// let io = socket(server);
 
-// io.on('connection', function (socket) {
-//   console.log('made socket connection')
-// });
+
+
+
+
+
