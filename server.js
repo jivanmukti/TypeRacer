@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
 var io = require('socket.io')(http, { origins: 'localhost:3000'});
+const raceHandler = require('./socketHandlers/raceHandler.js');
 
 
 let room = 0;
@@ -19,6 +20,10 @@ io.on('connect', function(socket){
   socket.on('msg',function(msg){
     console.log(msg)
   })
+
+  socket.on('gameMessage',(msg)=>{
+    raceHandler(msg,socket,io) 
+  });
 
 });
 
