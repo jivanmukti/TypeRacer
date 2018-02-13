@@ -8,6 +8,7 @@ const raceHandler = require('./socketHandlers/raceHandler.js');
 
 
 let room = 0;
+let handlerFactory = raceHandler()
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -22,7 +23,7 @@ io.on('connect', function(socket){
   })
 
   socket.on('gameMessage',(msg)=>{
-    raceHandler(msg,socket,io) 
+    handlerFactory(msg,socket,io)
   });
 
 });
