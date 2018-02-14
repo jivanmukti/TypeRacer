@@ -10,29 +10,21 @@ let room = 0;
 let numPlayers = 0;
 let handlerFactory = raceHandler();
 
-let text = `I believe in barbecue. As soul food and comfort food and health food, as a cuisine of both solace and celebration. When I’m feeling good, I want barbecue. And when I’m feeling bad, I just want barbecue more. I believe in barbecue in all its regional derivations, in its ethnic translations, in forms that range from white-tablecloth presentations of cunningly sauced costillas, to Chinese take-out spareribs that stain your fingers red, to the most authentic product of the tar-paper rib shacks of the Deep South. I believe that like sunshine and great sex, no day is bad that has barbecue in it.`
+let text = `I believe in barbecue. As soul food and comfort food and health food, as a cuisine of both 
+solace and celebration. When I’m feeling good, I want barbecue. And when I’m feeling bad, I just want 
+barbecue more.`
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-io.on('connect', function(socket){
-  console.log('rooms',room)
-  console.log('numplaerys',numPlayers) 
-
+io.on('connect', function(socket){ 
   let roomNum = Math.floor(room++ / 6);
-  let playerNum = (room % 6)/2
-
-  socket.join(`${roomNum}`);
-  socket.emit('init',JSON.stringify({room:roomNum,player:playerNum, text:text}));
-  
-  socket.on('msg',function(msg){
-    console.log(msg)
-  })
+  let playerNum = (room % 6)/2;
 
   // Assign socket to a room of 3 players
   socket.join(`${roomNum}`);
+  socket.emit('init',JSON.stringify({room:roomNum,player:playerNum, text:text}));
   socket.emit('join',`Server: You just joined room ${roomNum}`);
-
 
   // Listen for message from client
   socket.on('gameMessage',(msg)=>{
@@ -40,7 +32,9 @@ io.on('connect', function(socket){
   });
 
   // Broadcast to all sockets in a room
-  io.to(`${roomNum}`).emit('number of players', (numPlayers++ % 6)/2 + 1);
+  io.to(`${roomNum}`).emit('number of players', ((numPlayers++ % 6) + 1)/2);
+  console.log('Rooms: ',room)
+  console.log('Number of Players: ',numPlayers)
 });
 
 http.listen(process.env.PORT, function(){

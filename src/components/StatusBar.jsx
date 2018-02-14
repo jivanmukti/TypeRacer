@@ -13,7 +13,7 @@ class StatusBar extends Component {
         status = 'Waiting for ' + (3 - this.props.numPlayers) + ' Players';
         break;
       case 'Countdown':
-        status = <ReactCountdownClock seconds={10} color="#000" alpha={0.9} size={300} onComplete={this.props.endCountdown} />
+        status = <ReactCountdownClock seconds={5} color="#000" alpha={0.9} size={300} onComplete={this.props.endCountdown} />
         break;
       case 'Race':
         status = 'Go!';

@@ -5,14 +5,14 @@ import StatusBar from '../components/StatusBar.jsx'
 
 let socket;
 
-// Nav component which controls status bar
+// StartContainer which controls status bar
 class StartContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
       stage: 'Waiting',
       numPlayers: 0,
-      lockGame: false
+      lockGame: false,
     }
     this.endCountdown = this.endCountdown.bind(this);
     this.incrementPlayers = this.incrementPlayers.bind(this);
@@ -26,6 +26,7 @@ class StartContainer extends Component {
   // Change state from 'countdown' to 'race'
   endCountdown() {
     this.setState({stage: 'Race'});
+    this.props.enableRace();
   }
 
   // When the container mounts open the socket
@@ -55,4 +56,3 @@ class StartContainer extends Component {
 }
 
 export default StartContainer;
-
