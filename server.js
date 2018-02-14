@@ -43,6 +43,6 @@ io.on('connect', function(socket){
   io.to(`${roomNum}`).emit('number of players', (numPlayers++ % 6)/2 + 1);
 });
 
-http.listen(process.ENV.port || 3000, function(port){
+http.listen(process.env.PORT || 3000, function(port){
   console.log('listeneing on ' + port);
 });
