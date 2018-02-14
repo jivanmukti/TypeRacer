@@ -1,33 +1,31 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+import ReactCountdownClock from 'react-countdown-clock'
 
 class StatusBar extends Component {
   constructor(props) {
     super(props);
-    this.message = this.message.bind(this);
   }
-
-  message() {
+  render() {
+    let status;
     switch(this.props.stage) {
-      case 'waiting':
-        this.message = 'Waiting for Players...';
+      case 'Waiting':
+        status = 'Waiting for ' + (3 - this.props.numPlayers) + ' Players';
         break;
-      case 'countdown':
-        this.message = 'Counting down';
+      case 'Countdown':
+        status = <ReactCountdownClock seconds={10} color="#000" alpha={0.9} size={300} onComplete={this.props.endCountdown} />
         break;
-      case 'race':
-        this.message = 'Go!';
+      case 'Race':
+        status = 'Go!';
         break;
-      case 'finish':
-        this.message = 'Finished!'
+      case 'Finish':
+        status = 'Finished!'
         break;
       default:
+        status = 'Error'
     }
-  }
-  
-  render() {
     return (
-      <h3>{this.message()}</h3>
+      <h3>&nbsp;{status}</h3>
     )
   }
 }
