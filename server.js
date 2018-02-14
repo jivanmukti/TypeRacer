@@ -44,5 +44,5 @@ io.on('connect', function(socket){
 });
 
 http.listen(process.env.PORT, function(port){
-  console.log('listeneing on ' + port);
+  console.log('listeneing on ' + port.env.PORT);
 });
