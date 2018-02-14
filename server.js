@@ -16,9 +16,11 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 io.on('connect', function(socket){
+  console.log('rooms',room)
+  console.log('numplaerys',numPlayers) 
 
-  let roomNum = Math.floor(room++ / 3);
-  let playerNum = room % 3
+  let roomNum = Math.floor(room++ / 6);
+  let playerNum = (room % 6)/2
 
   socket.join(`${roomNum}`);
   socket.emit('init',JSON.stringify({room:roomNum,player:playerNum, text:text}));
@@ -28,7 +30,6 @@ io.on('connect', function(socket){
   })
 
   // Assign socket to a room of 3 players
-  let roomNum = Math.floor(room++ / 3)
   socket.join(`${roomNum}`);
   socket.emit('join',`Server: You just joined room ${roomNum}`);
 
@@ -39,7 +40,7 @@ io.on('connect', function(socket){
   });
 
   // Broadcast to all sockets in a room
-  io.to(`${roomNum}`).emit('number of players', (numPlayers++ % 3) + 1);
+  io.to(`${roomNum}`).emit('number of players', (numPlayers++ % 6)/2 + 1);
 });
 
 http.listen(3000, function(){
