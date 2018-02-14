@@ -30,7 +30,8 @@ class StartContainer extends Component {
 
   // When the container mounts open the socket
   componentDidMount() {
-    socket = openSocket('http://localhost:3000');
+    //    socket = openSocket('https://immense-tor-65130.herokuapp.com/');
+    socket = openSocket();
     socket.on('join',msg => console.log(msg));
     socket.on('number of players', count => {
       console.log('There are this many players sent via sockets: ', count);
