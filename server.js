@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
-var io = require('socket.io')(http, { origins: 'localhost:3000'});
+var io = require('socket.io')(http);
 const raceHandler = require('./socketHandlers/raceHandler.js');
 
 let room = 0;
@@ -37,6 +37,6 @@ io.on('connect', function(socket){
   console.log('Number of Players: ',numPlayers)
 });
 
-http.listen(3000, function(){
-  console.log('listening on 3000');
+http.listen(process.env.PORT, function(){
+  console.log('listeneing on ' + process.env.PORT);
 });

@@ -18,10 +18,14 @@ export default class RaceContainer extends Component {
     this.finishGame = this.finishGame.bind(this);
   }
 
-  componentDidMount() {
-    socket = openSocket('http://localhost:3000');
-    socket.on('init', data => this.setState(JSON.parse(data)));
-    socket.on('game', data => this.setState({game: JSON.parse(data)}));
+
+  componentDidMount(){
+    //socket = openSocket('https://immense-tor-65130.herokuapp.com/');
+    socket = openSocket();
+    socket.on('init',(data) => this.setState(JSON.parse(data)));
+    socket.on('game',(data) => {
+      this.setState({game:JSON.parse(data)})
+    })
   }
 
   finishGame(i) {
