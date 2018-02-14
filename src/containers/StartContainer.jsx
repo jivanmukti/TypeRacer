@@ -12,7 +12,7 @@ class StartContainer extends Component {
     this.state = {
       stage: 'Waiting',
       numPlayers: 0,
-      lockGame: false
+      lockGame: false,
     }
     this.endCountdown = this.endCountdown.bind(this);
     this.incrementPlayers = this.incrementPlayers.bind(this);
@@ -26,6 +26,7 @@ class StartContainer extends Component {
   // Change state from 'countdown' to 'race'
   endCountdown() {
     this.setState({stage: 'Race'});
+    this.props.enableRace();
   }
 
   // When the container mounts open the socket
@@ -54,4 +55,3 @@ class StartContainer extends Component {
 }
 
 export default StartContainer;
-
