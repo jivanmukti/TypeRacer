@@ -23,9 +23,7 @@ module.exports =
       switch(type){
       case 'stringChange':
         ourStore[player].string = body
-        io.in(`${room}`).emit(store)
-        socket.emit('join',JSON.stringify(store))
-        
+        io.in(`${room}`).emit('game',JSON.stringify(store));
       }
 
       console.log('store:', store)
