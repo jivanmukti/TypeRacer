@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
-var io = require('socket.io')(http, { origins: 'https://immense-tor-65130.herokuapp.com/'});
+var io = require('socket.io')(http, { origins: 'immense-tor-65130.herokuapp.com'});
 const raceHandler = require('./socketHandlers/raceHandler.js');
 
 let room = 0;
@@ -43,6 +43,6 @@ io.on('connect', function(socket){
   io.to(`${roomNum}`).emit('number of players', (numPlayers++ % 6)/2 + 1);
 });
 
-http.listen(process.env.PORT, function(port){
+http.listen(process.env.PORT, function(){
   console.log('listeneing on ' + process.env.PORT);
 });
