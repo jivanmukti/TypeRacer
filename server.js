@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 
 io.on('connect', function(socket){
 
-  let roomNum = Math.floor(room++ / 3);
   let playerNum = room % 3
 
   socket.join(`${roomNum}`);

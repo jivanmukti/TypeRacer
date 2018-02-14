@@ -5,7 +5,7 @@ import StatusBar from '../components/StatusBar.jsx'
 
 let socket;
 
-// Nav component which controls status bar
+// StartContainer which controls status bar
 class StartContainer extends Component {
   constructor(props) {
     super(props)
