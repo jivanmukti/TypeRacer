@@ -4,6 +4,7 @@ import StatusBar from '../components/StatusBar.jsx'
 
 class Nav extends Component {
   constructor(props) {
+    super(props)
     this.state = {
       stage: 'Waiting for Players',
       numPlayers: 0,
@@ -19,4 +20,4 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+export default Nav
