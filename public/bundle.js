@@ -22122,7 +22122,8 @@ var StartContainer = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      socket = (0, _socket2.default)('https://immense-tor-65130.herokuapp.com/');
+      //    socket = openSocket('https://immense-tor-65130.herokuapp.com/');
+      socket = (0, _socket2.default)();
       socket.on('join', function (msg) {
         return console.log(msg);
       });
@@ -25786,8 +25787,8 @@ var RaceContainer = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      socket = (0, _socket2.default)('https://immense-tor-65130.herokuapp.com/');
-
+      //socket = openSocket('https://immense-tor-65130.herokuapp.com/');
+      socket = (0, _socket2.default)();
       socket.on('init', function (data) {
         return _this2.setState(JSON.parse(data));
       });
