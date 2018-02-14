@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
-var io = require('socket.io')(http, { origins: 'immense-tor-65130.herokuapp.com'});
+var io = require('socket.io')(http, { origins: '*'});
 const raceHandler = require('./socketHandlers/raceHandler.js');
 
 let room = 0;
